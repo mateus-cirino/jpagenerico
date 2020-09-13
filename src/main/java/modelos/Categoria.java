@@ -1,30 +1,19 @@
 package modelos;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="categoria")
-public class Categoria {
+public class Categoria extends ObjetoBase{
 
-    private int id;
     private String nome;
     private String descricao;
-
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "nome")
@@ -32,7 +21,7 @@ public class Categoria {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(final String nome) {
         this.nome = nome;
     }
 
@@ -42,7 +31,7 @@ public class Categoria {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
+    public void setDescricao(final String descricao) {
         this.descricao = descricao;
     }
 
@@ -54,7 +43,7 @@ public class Categoria {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Categoria categoria = (Categoria) o;
+        final Categoria categoria = (Categoria) o;
         return Objects.equals(id, categoria.id) &&
                Objects.equals(nome, categoria.nome) &&
                Objects.equals(descricao, categoria.descricao);
@@ -63,5 +52,22 @@ public class Categoria {
     @Override
     public int hashCode() {
         return Objects.hash(id, nome, descricao);
+    }
+
+
+    @Override
+    public void stringToObjetoBase(final String... dados) {
+        id = Integer.parseInt(dados[0]);
+        nome = dados[1];
+        descricao = dados[2];
+    }
+
+    @Override
+    public String[] objetoToString() {
+        final String[] dados = new String[3];
+        dados[0] = Integer.toString(id);
+        dados[1] = nome;
+        dados[3] = descricao;
+        return dados;
     }
 }
