@@ -5,16 +5,17 @@ import java.util.List;
 import dao.DAO;
 import modelos.ObjetoBase;
 
-public class Controller {
-    private final ObjetoBase objetoBase;
-    private final DAO<ObjetoBase> dao;
+public abstract class Controller<T extends ObjetoBase> {
+    protected T objetoBase;
+    protected DAO<T> dao;
 
-    public Controller(final ObjetoBase objetoBase) {
-        this.objetoBase = objetoBase;
-        dao = new DAO<>(objetoBase.getClass());
+    protected Controller() {
+        iniciarController();
     }
 
-    public ObjetoBase inserir(final String... dados) {
+    protected abstract void iniciarController();
+
+    public T inserir(final String... dados) {
         objetoBase.stringToObjetoBase(dados);
         dao.inserir(objetoBase);
         return objetoBase;
@@ -29,11 +30,11 @@ public class Controller {
         dao.deletar(id);
     }
 
-    public ObjetoBase recuperar(final int id) {
+    public T recuperar(final int id) {
         return dao.recuperar(id);
     }
 
-    public List<ObjetoBase> recuperarTodos() {
+    public List<T> recuperarTodos() {
         return dao.recuperarTodos();
     }
 }
