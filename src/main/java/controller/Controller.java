@@ -5,15 +5,9 @@ import java.util.List;
 import dao.DAO;
 import modelos.ObjetoBase;
 
-public abstract class Controller<T extends ObjetoBase> {
+public class Controller<T extends ObjetoBase> {
     protected T objetoBase;
     protected DAO<T> dao;
-
-    protected Controller() {
-        iniciarController();
-    }
-
-    protected abstract void iniciarController();
 
     public T inserir(final String... dados) {
         objetoBase.stringToObjetoBase(dados);
