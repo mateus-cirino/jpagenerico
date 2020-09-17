@@ -6,7 +6,7 @@ import modelos.Categoria;
 public class CategoriaController extends Controller<Categoria>{
     @Override
     protected void iniciarController() {
-        objetoBase = new Categoria();
+        this.objetoBase = new Categoria();
         dao = new DAO<Categoria>(Categoria.class);
     }
 }

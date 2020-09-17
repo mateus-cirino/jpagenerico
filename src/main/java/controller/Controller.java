@@ -17,8 +17,7 @@ public abstract class Controller<T extends ObjetoBase> {
 
     public T inserir(final String... dados) {
         objetoBase.stringToObjetoBase(dados);
-        dao.inserir(objetoBase);
-        return objetoBase;
+        return dao.inserir(objetoBase);
     }
 
     public void atualizar(final String... dados) {

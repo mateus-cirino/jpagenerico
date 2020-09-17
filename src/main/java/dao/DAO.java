@@ -31,9 +31,10 @@ public class DAO <T extends ObjetoBase> {
         entityManager.getTransaction().commit();
     }
 
-    public void inserir(final T objeto) {
+    public T inserir(final T objeto) {
         entityManager.persist(objeto);
         commit();
+        return objeto;
     }
 
     public void atualizar(final T objeto) {

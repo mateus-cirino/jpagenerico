@@ -67,7 +67,7 @@ public class Categoria extends ObjetoBase{
         final String[] dados = new String[3];
         dados[0] = Integer.toString(id);
         dados[1] = nome;
-        dados[3] = descricao;
+        dados[2] = descricao;
         return dados;
     }
 }
